@@ -11,8 +11,14 @@
 
 <body>
     <div id="tdList">
+        <!-- <div v-bind:title="title">{{title}}</div> -->
+        <!-- v-bind可用：表示 -->
+        <div :title="title">{{title}}</div>
+
         <input type="text" v-model="inputValue">
-        <button v-on:click="handleBtnClick">提交</button>
+        <!-- <button v-on:click="handleBtnClick">提交</button> -->
+        <!-- v-on可以用@来表示 -->
+        <button @click="handleBtnClick">提交</button>
         <ul>
             <li v-for="item in list">{{item}}</li>
         </ul>
@@ -21,6 +27,7 @@
         var tdList = new Vue({
             el: '#tdList',
             data: {
+                title:"to do list~",
                 list: [],
                 inputValue: ''
             },
