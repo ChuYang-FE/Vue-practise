@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的样式绑定</title>
+    <script src="vue.js"></script>
+    <style>
+        .activated {
+            color: red;
+        }
+
+        .activatedDefault {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <!-- 方法1 用class-->
+        <div>
+            <div @click="colorChange1" :class="[activated,activatedDefault]">Hello World 1!</div>
+        </div>
+        <hr>
+        <!-- 方法2 直接定义style对象-->
+        <div>
+            <div :style="styleObj" @click="colorChange2">Hello World 2!</div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: ".app",
+            data: {
+                activated:"",
+                activatedDefault:"activatedDefault",
+                styleObj: {
+                    color: "pink"
+                }
+            },
+            methods: {
+                colorChange1: function () {
+                    this.activated = this.activated === "activated" ? "" : "activated";
+                },
+                colorChange2: function () {
+                    this.styleObj.color = this.styleObj.color === "pink" ? "black" : "pink";
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
