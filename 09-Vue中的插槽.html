@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09-Vue中的插槽</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id='root'>
+        <my-content>
+            <div slot="header">header</div>
+            <div slot="footer">footer</div>
+        </my-content>
+    </div>
+
+    <script>
+        Vue.component("my-content", {
+            template: ` <div>
+                            <slot name="header"></slot>
+                            <h1>Hello</h1>                       
+                            <slot name="footer"></slot>
+                        </div>`
+        })
+        var vm = new Vue({
+            el:"#root",
+        })
+    </script>
+</body>
+
+</html>
