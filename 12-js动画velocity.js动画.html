@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12-js动画velocity.js动画</title>
+    <script src="vue.js"></script>
+    <script src="velocity.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 进入之前： before-enter-->
+        <!-- 进入时： enter-->
+        <!-- 进入之后： after-enter-->
+        <transition @before-enter="beforeEnter"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+        >
+            <div v-if='show'>hello world</div>
+        </transition>
+        <button @click="handleBtnClick">toggle</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#root",
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                },
+                beforeEnter: function (el) {
+                    el.style.opacity = 0;
+
+                },
+                enter:function(el,done){
+                    Velocity(el,{
+                        opacity:1
+                    },{
+                        duration:1000,
+                        complete:done
+                    })
+                },
+                afterEnter:function(el){
+                        console.log("动画结束");
+                                      
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
